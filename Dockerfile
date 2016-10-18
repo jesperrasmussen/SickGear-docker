@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:2.7.12-alpine
 MAINTAINER Jesper Rasmussen <me@jesperrasmussen.com>
 
 ENV SICKGEAR_VERSION develop
