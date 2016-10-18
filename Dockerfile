@@ -5,6 +5,9 @@ ENV SICKGEAR_VERSION develop
 
 # Download gosu and SickGear.
 RUN apk --update add tar
+RUN apk -U upgrade && \
+    apk -U add python ca-certificates && \
+    update-ca-certificates
 RUN apk add --update \
       ca-certificates \
       curl \
