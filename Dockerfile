@@ -1,5 +1,5 @@
 FROM python:2.7-alpine
-MAINTAINER Sami Haahtinen <ressu@ressukka.net>
+MAINTAINER Jesper Rasmussen <me@jesperrasmussen.com>
 
 ENV SICKGEAR_VERSION develop
 
