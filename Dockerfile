@@ -1,9 +1,10 @@
 FROM python:2.7-alpine
 MAINTAINER Sami Haahtinen <ressu@ressukka.net>
 
-ENV SICKGEAR_VERSION 0.11.16
+ENV SICKGEAR_VERSION develop
 
 # Download gosu and SickGear.
+RUN apk --update add tar
 RUN apk add --update \
       ca-certificates \
       curl \
@@ -14,6 +15,7 @@ RUN apk add --update \
       libxslt \
       libxslt-dev \
       musl-dev \
+      tar \
       tzdata \
       && \
     gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 && \
@@ -23,10 +25,10 @@ RUN apk add --update \
     gpg --verify /usr/local/bin/gosu.asc && \
     rm /usr/local/bin/gosu.asc && \
     chmod +x /usr/local/bin/gosu && \
-    mkdir /opt && \
-    curl -SL "https://api.github.com/repos/SickGear/SickGear/tarball/develop" | \
-      tar xz -C /opt && \
-    mv /opt/SickGear-release_${SICKGEAR_VERSION} /opt/SickGear && \
+    mkdir -p /opt/SickGear-${SICKGEAR_VERSION}/ && \
+    curl -SL "https://api.github.com/repos/SickGear/SickGear/tarball/${SICKGEAR_VERSION}" | \
+      tar xz -C /opt/SickGear-${SICKGEAR_VERSION} --strip-components 1 && \
+    mv /opt/SickGear-${SICKGEAR_VERSION} /opt/SickGear && \
     pip install --no-cache-dir lxml && \
     pip install --no-cache-dir -r /opt/SickGear/requirements.txt && \
     apk del \
