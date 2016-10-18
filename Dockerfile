@@ -24,7 +24,7 @@ RUN apk add --update \
     rm /usr/local/bin/gosu.asc && \
     chmod +x /usr/local/bin/gosu && \
     mkdir /opt && \
-    curl -SL "https://github.com/SickGear/SickGear/archive/release_${SICKGEAR_VERSION}.tar.gz" | \
+    curl -SL "https://api.github.com/repos/SickGear/SickGear/tarball/develop" | \
       tar xz -C /opt && \
     mv /opt/SickGear-release_${SICKGEAR_VERSION} /opt/SickGear && \
     pip install --no-cache-dir lxml && \
